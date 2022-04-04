@@ -1,0 +1,175 @@
+<odoo>
+    <data>
+        <!-- explicit list view definition -->
+
+        <record model="ir.ui.view" id="library_list">
+            <field name="name">Library list</field>
+            <field name="model">library.library</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="value"/>
+                    <field name="image" widget="image"/>
+                    <field name="stat"/>
+                    <field name="star"/>
+                    <field name="gender"/>
+                    <field name="books"/>
+                    <field name="date"/>
+                </tree>
+            </field>
+        </record>
+
+
+        <record id="library_search" model="ir.ui.view">
+            <field name="name">library search</field>
+            <field name="model">library.library</field>
+            <field name="arch" type="xml">
+                <search string="Record">
+                    <field name="name"/>
+                    <field name="gender"/>
+                    <separator/>
+                    <filter string="Name" name="name" domain="[('name','=','kakashi hatake')]"/>
+                    <filter string="Male" name="Male" domain="[('gender','=','Male')]"/>
+                    <group expand='1' string='Group by'>
+                        <filter string='Name' name="name" context="{'group_by' : 'name'}"/>
+                        <filter string='Gender' name="group_gender" context="{'group_by' : 'gender'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
+        <record id="view_res_company_kanban" model="ir.ui.view">
+            <field name="name">library.library.kanban</field>
+            <field name="model">library.library</field>
+            <field name="arch" type="xml">
+                <kanban>
+                    <field name="name" widget='email' placeholder='email'/>
+                    <field name="value"/>
+                    <field name="image" widget="image"/>
+                    <field name="stat"/>
+                    <field name="star" widget="priority"/>
+                    <field name="gender" widget="radio"/>
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div t-attf-class="oe_kanban_global_click">
+                                <div class="oe_kanban_details">
+                                    <ul>
+                                        <li>
+                                            Name:
+                                            <field name="name" placeholder='name'
+                                                   options="{'invisible': [('name','!=',True)]}"/>
+                                        </li>
+                                        <li>
+                                            Value:
+                                            <field name="value" placeholder='value'/>
+                                        </li>
+                                        <li>
+                                            <field name="image" widget="image"/>
+                                        </li>
+                                        <li>
+                                            <field name="gender" widget="radio" options="{'horizontal':1}"/>
+                                        </li>
+                                        <li>
+                                            Date Time:
+                                            <field name="date"/>
+                                        </li>
+                                        <li>
+                                            Power Level:
+                                            <field name="star" widget="priority"/>
+                                        </li>
+                                        <li>
+                                            <field name="books"/>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="library_form">
+            <field name="name">Library form</field>
+            <field name="model">library.library</field>
+            <field name="arch" type="xml">
+                <form>
+                    <header>
+                        <field name="stat" widget="statusbar" options="{'clickable':'2'}"
+                               statusbar_visible="application,confirm"/>
+                    </header>
+                    <sheet>
+                        <group>
+                            <field name="name" placeholder="Harsh"/>
+                            <field name="value"/>
+                            <field name="image" widget="image"/>
+                            <field name="star" widget="priority"/>
+                            <field name="gender" widget="radio" options="{'horizontal':1}"/>
+                            <field name="date"/>
+                        </group>
+                        <notebook>
+                            <page string="Books Details">
+                                <field name="books">
+                                    <tree editable="bottom">
+                                        <field name="books_name"/>
+                                        <field name="quantity"/>
+                                        <field name="Mrp"/>
+                                        <field name="add"/>
+                                    </tree>
+                                </field>
+                            </page>
+                            <page string="Address Details">
+                                <field name="address">
+                                    <tree editable="bottom">
+                                        <field name="Address"/>
+                                        <field name="locality"/>
+                                        <field name="street"/>
+                                        <field name="pin_code"/>
+                                    </tree>
+                                </field>
+                            </page>
+                            <page string="Payment Details">
+                                <field name="payment">
+                                    <tree editable="bottom">
+                                        <field name="card"/>
+                                        <field name="name_of_card_holder"/>
+                                        <field name="cvv"/>
+                                    </tree>
+                                </field>
+                            </page>
+                        </notebook>
+                    </sheet>
+                    <div class='oe_chatter'>
+                        <field name="message_follower_ids"/>
+                        <field name="activity_ids"/>
+                        <field name="message_ids"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+
+        <!-- actions opening views on models -->
+
+        <record model="ir.actions.act_window" id="library_action_window">
+            <field name="name">Library window</field>
+            <field name="res_model">library.library</field>
+            <field name="view_mode">tree,form,kanban</field>
+            <field name="context">{'search_default_group_gender':1}</field>
+        </record>
+
+
+        <menuitem name="Library" id="library_menu_root"/>
+
+        <!-- menu categories -->
+
+        <menuitem name="Don't Click" id="library_menu_1" parent="library_menu_root"/>
+
+        <!-- actions -->
+
+        <menuitem name="Don't Click" id="library_menu_1_list" parent="library_menu_1"
+                  action="library_action_window"/>
+        <!--        <menuitem name="Server to list" id="library" parent="library_menu_2"-->
+        <!--                  action="library_action_server"/>-->
+
+    </data>
+</odoo>

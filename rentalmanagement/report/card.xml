@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<odoo>
+
+    <template id="report_person_detail">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="S">
+                <t t-call="web.external_layout">
+                    <h2 align="center" style="margin-left: 30px; margin-top: 10 px; margin-bottom: 130px;">Person
+                        Details
+                    </h2>
+                    <div class='page'>
+                        <b>Name :</b>
+                        <span t-field="S.name"/>
+                        <br/>
+                        <b>Surname :</b>
+                        <span t-field="S.l_name"/>
+                        <br/>
+                        <b>Rental Type :</b>
+                        <span t-field="S.rental_type"/>
+                        <br/>
+                        <b>Start Date :</b>
+                        <span t-field="S.start_date"/>
+                        <br/>
+                        <b>End Date :</b>
+                        <span t-field="S.end_date"/>
+                        <br/>
+                        <b>Price :</b>
+                        <span t-field="S.price"/>
+                        <br/>
+                        <b>Status of Process :</b>
+                        <span t-field="S.state"/>
+                        <br/>
+                        <b>Note :</b>
+                        <span t-field="S.note"/>
+                        <br/>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+    <template id="report_rental_reference">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="doc">
+                <t t-call="rentalmanagement.report_person_detail"/>
+            </t>
+        </t>
+    </template>
+</odoo>

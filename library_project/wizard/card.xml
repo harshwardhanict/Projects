@@ -1,0 +1,38 @@
+<odoo>
+    <data>
+        <!-- explicit list view definition -->
+        <record model="ir.ui.view" id="card_membership_list">
+            <field name="name">Membership Card</field>
+            <field name="model">card.membership</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="p_name"/>
+                    <field name="p_id" password="True"/>
+                    <field name="p_period"/>
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="card_membership_form">
+            <field name="name">Membership Card</field>
+            <field name="model">card.membership</field>
+            <field name="arch" type="xml">
+                <form>
+                    <group>
+                        <field name="p_name"/>
+                        <field name="p_id" password="True"/>
+                        <field name="p_period"/>
+                    </group>
+                </form>
+            </field>
+        </record>
+
+
+        <record model="ir.actions.act_window" id="card_membership_action_window">
+            <field name="name">Membership Card</field>
+            <field name="res_model">card.membership</field>
+            <field name="view_mode">form,tree</field>
+            <!--            <field name="target">new</field>-->
+        </record>
+    </data>
+</odoo>

@@ -1,0 +1,85 @@
+<odoo>
+    <data>
+        <!-- explicit list view definition -->
+
+        <record model="ir.ui.view" id="department_list">
+            <field name="name">department list</field>
+            <field name="model">department_department</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="marks"/>
+                    <field name="fee_id"/>
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="department_form">
+            <field name="name">department form</field>
+            <field name="model">department_department</field>
+            <field name="arch" type="xml">
+                <form>
+                    <header>
+                        <button name="Add" string="Add details" type="object" class="btn-primary"/>
+                    </header>
+                    <sheet>
+                        <div class="oe_button_box" name="button_box">
+                            <button name="website" string="Website" type="object" class="oe_stat_button"
+                                    icon="fa-eraser">
+                            </button>
+                        </div>
+                        <group>
+                            <field name="name" widget="email"/>
+                            <field name="marks"/>
+                            <field name="fee_id"/>
+                            <field name="value"/>
+                            <field name="print_value" readonly="True" force_save="1"/>
+                            <field name="user_id" widget="many2many_tags" options="{'color_field': 'color'}"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+
+        <!-- actions opening views on models -->
+        <record model="ir.actions.act_window" id="department_action_window">
+            <field name="name">Department</field>
+            <field name="res_model">department_department</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+
+        <!-- server action to the one above -->
+
+        <record model="ir.actions.server" id="department_action_server">
+            <field name="name">department server</field>
+            <field name="model_id" ref="model_department_department"/>
+            <field name="state">code</field>
+            <field name="code">
+                action = {
+                "type": "ir.actions.act_window",
+                "view_mode": "tree,form",
+                "res_model": model._name,
+                }
+            </field>
+        </record>
+
+        <!-- Top menu item -->
+
+        <menuitem name="department" id="department_menu_root"/>
+        <!-- menu categories -->
+
+        <menuitem name="Menu 1" id="department_menu_1" parent="department_menu_root"/>
+        <menuitem name="Menu 2" id="department_menu_2" parent="department_menu_root"/>
+
+        <!-- actions -->
+
+        <menuitem name="List" id="department_menu_1_list" parent="department_menu_1"
+                  action="department_action_window"/>
+        <menuitem name="Server to list" id="department" parent="department_menu_2"
+                  action="department_action_server"/>
+        <menuitem name="Detail" id="department_wizard_menu_item" parent="department_menu_2"
+                  action="department_wiz_action_window"/>
+    </data>
+</odoo>

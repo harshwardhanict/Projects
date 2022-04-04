@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_rental_management,rental.management,model_rental_management,base.group_user,1,1,1,1
+access_rental_type,rental.type,model_rental_type,base.group_user,1,1,1,1
+access_task_wiz,task_wiz,model_task_wiz,base.group_user,1,1,1,1
+access_rental_person,rental_person,model_rental_person,base.group_user,1,1,1,1

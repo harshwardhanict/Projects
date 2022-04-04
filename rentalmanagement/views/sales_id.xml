@@ -1,0 +1,20 @@
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="sale_form_inherit">
+            <field name="name">inherit form</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form"/>
+            <field name="arch" type="xml">
+                <field name="partner_id" position="after">
+                    <field name="email"/>
+                    <field name="mobile"/>
+                    <field name="today_date"/>
+                    <field name="birth_date"/>
+                    <field name="age"/>
+                    <field name="count"/>
+                </field>
+            </field>
+        </record>
+    </data>
+</odoo>
+

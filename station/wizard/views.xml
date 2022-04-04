@@ -1,0 +1,30 @@
+<odoo>
+    <data>
+        <!-- explicit list view definition -->
+
+        <record model="ir.ui.view" id="station_wizard_list_1">
+            <field name="name">station list</field>
+            <field name="model">station_wiz</field>
+            <field name="arch" type="xml">
+                <form>
+                    <group>
+                        <field name="name"/>
+                        <field name="date"/>
+                        <field name="ticket_no"/>
+                    </group>
+                </form>
+            </field>
+        </record>
+
+
+        <!-- actions opening views on models -->
+        <record model="ir.actions.act_window" id="station_wizz">
+            <field name="name">station window</field>
+            <field name="res_model">station_wiz</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+
+
+    </data>
+</odoo>

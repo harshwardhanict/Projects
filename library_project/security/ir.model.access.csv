@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_library_project_library_project,library_project.library_project,model_library_project_library_project,base.group_user,1,1,1,1
+access_card_membership,card.membership,model_card_membership,base.group_user,1,1,1,1

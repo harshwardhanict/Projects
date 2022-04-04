@@ -1,0 +1,35 @@
+<odoo>
+    <data>
+        <!-- explicit list view definition -->
+
+        <record model="ir.ui.view" id="department_wizard_list_1">
+            <field name="name">department list</field>
+            <field name="model">department_wiz</field>
+            <field name="arch" type="xml">
+                <form>
+                    <group>
+                        <field name="name"/>
+                        <field name="fee_id"/>
+                        <field name="user_id" widget="many2many_tags" options="{'color_field': 'color'}"/>
+
+                    </group>
+                    <footer>
+                        <button name="Create_H" string="add" type="object" class="btn-primary" />
+                        <button name="%(department_action_window)d" string="Menu" type="action" class="btn-primary"
+                                data-hotkey="z"/>
+                        <button string="Cancel" class="btn-primary" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+
+        <!-- actions opening views on models -->
+        <record model="ir.actions.act_window" id="department_wiz_action_window">
+            <field name="name">department window</field>
+            <field name="res_model">department_wiz</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+    </data>
+</odoo>

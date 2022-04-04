@@ -1,0 +1,153 @@
+<odoo>
+    <data>
+        <!-- explicit list view definition -->
+
+        <record model="ir.ui.view" id="library_project_list">
+            <field name="name">library_project list</field>
+            <field name="model">library_project.library_project</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="book_name"/>
+                    <field name="author"/>
+                    <field name="price"/>
+                    <field name="genre"/>
+                    <field name="language"/>
+                    <field name="Rating" widget="priority"/>
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="library_project_form">
+            <field name="name">library_project form</field>
+            <field name="model">library_project.library_project</field>
+            <field name="arch" type="xml">
+                <form>
+                    <group>
+                        <div style="width:90px; height:150px; margin-right:100px;">
+                            <field name="image" widget="image"/>
+                        </div>
+                        <!--                        <group>-->
+                        <!--                            <div style="width:105px; height:110px;  margin-right:-120px;">-->
+
+                        <!--                            </div>-->
+                        <!--                        </group>-->
+                    </group>
+                    <group>
+                        <field name="book_name"/>
+                        <field name="author"/>
+                        <field name="price"/>
+                        <field name="genre"/>
+                        <field name="publisher"/>
+                        <field name="Publisher_date"/>
+                        <field name="binding"/>
+                        <field name="language"/>
+                        <field name="Rating" widget="priority"/>
+                        <field name="description"/>
+                    </group>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_res_company_kanban" model="ir.ui.view">
+            <field name="name">Library</field>
+            <field name="model">library_project.library_project</field>
+            <field name="arch" type="xml">
+                <kanban>
+                    <field name="book_name"/>
+                    <field name="author"/>
+                    <field name="publisher"/>
+                    <field name="price"/>
+                    <field name="genre"/>
+                    <field name="language"/>
+                    <field name="Rating" widget="priority"/>
+                    <field name="description"/>
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div t-attf-class="oe_kanban_global_click">
+                                <div class="oe_kanban_details">
+                                    <ul>
+                                        <li>
+                                            <field name="image" widget="image"/>
+                                        </li>
+                                        <li>
+                                            <b>Name :</b>
+                                            <field name="book_name"/>
+                                        </li>
+                                        <li>
+                                            <b>Author:</b>
+                                            <field name="author"/>
+                                        </li>
+                                        <li>
+                                            <b>Publisher :</b>
+                                            <field name="publisher"/>
+                                        </li>
+                                        <li>
+                                            <b>Price :</b>
+                                            <field name="price"/>
+
+                                        </li>
+                                        <li>
+                                            <b>Genre :</b>
+                                            <field name="genre"/>
+                                        </li>
+                                        <li>
+                                            <b>Language :</b>
+                                            <field name="language"/>
+                                        </li>
+                                        <li>
+                                            <b>Rating :</b>
+                                            <field name="Rating" widget="priority"/>
+                                        </li>
+                                        <li>
+                                            <b>Description :</b>
+                                            <field name="description"/>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+
+        <!-- actions opening views on models -->
+
+        <record model="ir.actions.act_window" id="library_project_action_window">
+            <field name="name">LIBRARY</field>
+            <field name="res_model">library_project.library_project</field>
+            <field name="view_mode">tree,form,kanban</field>
+        </record>
+
+
+        <!-- server action to the one above -->
+
+        <!--        <record model="ir.actions.server" id="library_project.action_server">-->
+        <!--            <field name="name">library_project server</field>-->
+        <!--            <field name="model_id" ref="model_library_project_library_project"/>-->
+        <!--            <field name="state">code</field>-->
+        <!--            <field name="code">-->
+        <!--                action = {-->
+        <!--                "type": "ir.actions.act_window",-->
+        <!--                "view_mode": "tree,form",-->
+        <!--                "res_model": model._name,-->
+        <!--                }-->
+        <!--            </field>-->
+        <!--        </record>-->
+
+
+        <!-- Top menu item -->
+
+        <menuitem name="library_project" id="library_project_menu_root"/>
+
+        <!-- menu categories -->
+
+        <menuitem name="Details" id="library_project_menu_1" parent="library_project_menu_root"/>
+
+        <!-- actions -->
+        <menuitem name="Main Menu" id="library_project_main_menu" parent="library_project_menu_1"
+                  action="library_project_action_window"/>
+        <menuitem name="Card Membership" id="library_card_main_menu" parent="library_project_menu_1"
+                  action="card_membership_action_window"/>
+    </data>
+</odoo>

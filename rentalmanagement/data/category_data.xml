@@ -1,0 +1,12 @@
+
+<odoo>
+    <data>
+        <!--
+        Resource: res.partner.category
+        -->
+        <record id="res_partner_category_best" model="res.partner.category">
+            <field name="name">Best Customer</field>
+            <field name="color" eval="2"/>
+        </record>
+    </data>
+</odoo>

@@ -1,0 +1,84 @@
+<odoo>
+    <data>
+        <!-- explicit list view definition -->
+
+        <record model="ir.ui.view" id="station_list">
+            <field name="name">station list</field>
+            <field name="model">station.station</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="Price"/>
+                    <field name="ticket"/>
+                    <field name="boarding_station"/>
+                    <field name="destination_station"/>
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="station_form">
+            <field name="name">station form</field>
+            <field name="model">station.station</field>
+            <field name="arch" type="xml">
+                <form>
+                    <group>
+                        <field name="name"/>
+                        <field name="Price"/>
+                        <field name="ticket"/>
+                    </group>
+                    <group>
+                        <field name="boarding_station"/>
+                    </group>
+                    <notebook>
+                        <page string="Station">
+                            <field name="station">
+                                <tree editable="bottom">
+                                    <field name="station_name"/>
+                                    <field name="number_ticket_booking"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </form>
+            </field>
+        </record>
+
+
+        <!-- actions opening views on models -->
+
+        <record model="ir.actions.act_window" id="station_action_window">
+            <field name="name">station window</field>
+            <field name="res_model">station.station</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <!-- server action to the one above -->
+
+        <record model="ir.actions.server" id="station_action_server">
+            <field name="name">station server</field>
+            <field name="model_id" ref="model_station_station"/>
+            <field name="state">code</field>
+            <field name="code">
+                action = {
+                "type": "ir.actions.act_window",
+                "view_mode": "tree,form",
+                "res_model": model._name,
+                }
+            </field>
+        </record>
+
+
+        <!-- Top menu item -->
+        <menuitem name="station" id="station_menu_root"/>
+        <!-- menu categories -->
+        <menuitem name="Menu 1" id="station_menu_1" parent="station_menu_root"/>
+        <menuitem name="Menu 2" id="station_menu_2" parent="station_menu_root"/>
+        <!-- actions -->
+        <menuitem name="Search" id="station_menu_1_list" parent="station_menu_1"
+                  action="station_action_window"/>
+        <menuitem name="Server to list" id="station" parent="station_menu_2"
+                  action="station_action_server"/>
+<!--        <menuitem name="Check" id="station_wizzzz_menu" parent="station_menu_root"-->
+<!--                  action="station_wizz"/>-->
+    </data>
+</odoo>

@@ -1,0 +1,58 @@
+<odoo>
+    <data>
+        <!-- explicit list view definition -->
+
+<!--        <record model="ir.ui.view" id="rental_type_list">-->
+<!--            <field name="name">rental_type list</field>-->
+<!--            <field name="model">rental_type</field>-->
+<!--            <field name="arch" type="xml">-->
+<!--                <tree>-->
+<!--                    <field name="name"/>-->
+<!--                    <field name="code"/>-->
+<!--                    <field name="description"/>-->
+<!--                </tree>-->
+<!--            </field>-->
+<!--        </record>-->
+
+
+<!--        <record id="rental_type_search" model="ir.ui.view">-->
+<!--            <field name="name">rental_type search</field>-->
+<!--            <field name="model">rental_type</field>-->
+<!--            <field name="arch" type="xml">-->
+<!--                <search string="Record">-->
+<!--                    <field name="name"/>-->
+<!--                    <field name="code"/>-->
+<!--                    <separator/>-->
+<!--                    <filter string="Name" name="name" domain="[('name','=','Small House')]"/>-->
+<!--                    <group expand='1' string='Group by'>-->
+<!--                        <filter string='Name' name="name" context="{'group_by' : 'name'}"/>-->
+<!--                    </group>-->
+<!--                </search>-->
+<!--            </field>-->
+<!--        </record>-->
+
+
+        <record model="ir.ui.view" id="rental_type_form">
+            <field name="name">rental_type form</field>
+            <field name="model">rental_type</field>
+            <field name="arch" type="xml">
+                <form>
+                    <group>
+                        <field name="name"/>
+                        <field name="code"/>
+                        <field name="description"/>
+                    </group>
+                </form>
+            </field>
+        </record>
+
+        <!-- actions opening views on models -->
+
+        <record model="ir.actions.act_window" id="rental_action_win">
+            <field name="name">RentalType window</field>
+            <field name="res_model">rental_type</field>
+            <field name="view_mode">tree,form,search</field>
+        </record>
+
+    </data>
+</odoo>

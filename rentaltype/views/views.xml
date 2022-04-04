@@ -1,0 +1,71 @@
+<odoo>
+    <data>
+        <!-- explicit list view definition -->
+
+        <record model="ir.ui.view" id="rentaltype.list">
+            <field name="name">rentaltype list</field>
+            <field name="model">rentaltype.rentaltype</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="Code"/>
+                    <field name="description"/>
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="rentaltype.form">
+            <field name="name">rentaltype form</field>
+            <field name="model">rentaltype.rentaltype</field>
+            <field name="arch" type="xml">
+                <form>
+                    <group>
+                        <field name="name"/>
+                        <field name="Code"/>
+                        <field name="description"/>
+                    </group>
+                </form>
+            </field>
+        </record>
+
+
+        <record id="renttype_search" model="ir.ui.view">
+            <field name="name">rental type search</field>
+            <field name="model">rentaltype.rentaltype</field>
+            <field name="arch" type="xml">
+                <search string="Record">
+                    <field name="name"/>
+                    <field name="Code"/>
+                    <separator/>
+                    <filter string="Name" name="name" domain="[('name','=','Monthly')]"/>
+                    <group expand='1' string='Group by'>
+                        <filter string='Name' name="name" context="{'group_by' : 'name'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+        <!-- actions opening views on models -->
+
+        <record model="ir.actions.act_window" id="rentaltype.action_window">
+            <field name="name">Rental</field>
+            <field name="res_model">rentaltype.rentaltype</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+
+        <!-- Top menu item -->
+
+        <menuitem name="rentaltype" id="rentaltype.menu_root"/>
+
+        <!-- menu categories -->
+
+        <menuitem name="Menu 1" id="rentaltype.menu_1" parent="rentaltype.menu_root"/>
+        <menuitem name="Menu 2" id="rentaltype.menu_2" parent="rentaltype.menu_root"/>
+
+        <!-- actions -->
+
+        <menuitem name="List" id="rentaltype.menu_1_list" parent="rentaltype.menu_1"
+                  action="rentaltype.action_window"/>
+
+    </data>
+</odoo>

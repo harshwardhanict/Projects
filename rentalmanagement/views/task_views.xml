@@ -1,0 +1,30 @@
+<odoo>
+    <data>
+        <!-- explicit list view definition -->
+
+        <record model="ir.ui.view" id="task_list_view">
+            <field name="name">task list</field>
+            <field name="model">task_wiz</field>
+            <field name="arch" type="xml">
+                <form>
+                    <group>
+                        <field name="customer" context="{'name_phone':'customer'}"/>
+                        <field name="customer_email"/>
+                        <field name="sales_person"/>
+                        <field name="sales_person_contact"/>
+                        <field name="payment_terms"/>
+                    </group>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="task_wiz_window">
+            <field name="name">New Window</field>
+            <field name="res_model">task_wiz</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+
+    </data>
+</odoo>
+
